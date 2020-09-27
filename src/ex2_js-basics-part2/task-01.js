@@ -1,6 +1,6 @@
 function checkTypeArgument(arg) {
-    if (arg !== arg) {
-        return 'undefined';
+    if (isNaN(arg)) {
+        return undefined;
     }
     if (typeof arg === 'string') {
         return 'string';
@@ -8,7 +8,7 @@ function checkTypeArgument(arg) {
     if (typeof arg === 'number') {
         return 'number';
     }
-    return 'undefined';
+    return undefined;
 };
 
 
