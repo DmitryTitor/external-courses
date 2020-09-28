@@ -4,6 +4,7 @@ function checkSameArrayElements(arr) {
             return false;
         }
     }
+    
     return true;
 }
 

@@ -1,23 +1,25 @@
 function outputEvenAndOddNumbers(arr) {
-    let evenNumbers = 0;
-    let oddNumbers = 0;
-    let zeroNumbers = 0;
+    let evenNumbersAmount = 0;
+    let oddNumbersAmount = 0;
+    let zeroNumbersAmount = 0;
     for(let i = 0; i < arr.length; i++) {
         if ((typeof arr[i] === 'number') && !(isNaN(arr[i]))) {
             if (arr[i] === 0) {
-                zeroNumbers++;
+                zeroNumbersAmount++;
             } else {
                 if (arr[i] % 2 === 0) {
-                    evenNumbers++;
+                    evenNumbersAmount++;
                 }
+
                 if (arr[i] % 2 === 1) {
-                    oddNumbers++;
+                    oddNumbersAmount++;
                 }
             }
         }
     }
-    console.log(evenNumbers, oddNumbers, zeroNumbers);
-    return [evenNumbers, oddNumbers, zeroNumbers];
+    console.log(evenNumbersAmount, oddNumbersAmount, zeroNumbersAmount);
+    
+    return [evenNumbersAmount, oddNumbersAmount, zeroNumbersAmount];
 }
 
 module.exports = outputEvenAndOddNumbers;
