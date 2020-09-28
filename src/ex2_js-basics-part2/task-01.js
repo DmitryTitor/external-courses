@@ -1,14 +1,15 @@
 function checkTypeArgument(arg) {
+    const argType = typeof arg;
     if (isNaN(arg)) {
         return undefined;
     }
 
-    if (typeof arg === 'string') {
-        return 'string';
+    if (argType === 'string') {
+        return argType;
     }
 
-    if (typeof arg === 'number') {
-        return 'number';
+    if (argType === 'number') {
+        return argType;
     }
     
     return undefined;

@@ -9,9 +9,7 @@ function outputEvenAndOddNumbers(arr) {
             } else {
                 if (arr[i] % 2 === 0) {
                     evenNumbersAmount++;
-                }
-
-                if (arr[i] % 2 === 1) {
+                } else {
                     oddNumbersAmount++;
                 }
             }
