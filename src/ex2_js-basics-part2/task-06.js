@@ -8,7 +8,7 @@ function checkPrimeNumber(num) {
   }
 
   for (let i = 2; i < num; i += 1) {
-    if (i !== num && num % i === 0) {
+    if (num % i === 0) {
       return `Число ${num} - составное число`;
     }
   }
