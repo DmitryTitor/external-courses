@@ -1,4 +1,3 @@
-function simpleObjectManipulation() {
   const obj = {};
 
   obj.propNumber = 42;
@@ -6,6 +5,3 @@ function simpleObjectManipulation() {
   obj.propArray = [1, 2, 3];
   
   delete obj.propArray;
-}
-
-module.exports = simpleObjectManipulation;

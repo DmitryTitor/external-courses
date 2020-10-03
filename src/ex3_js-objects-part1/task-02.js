@@ -1,6 +1,5 @@
 function outputArrayProperties(obj) {
-  Object.entries(obj).forEach(property => {
-    let [key, value] = property;
+  Object.entries(obj).forEach(([key, value]) => {
     console.log(`Ключ: ${key} Значение:${value}`);
   });
 
