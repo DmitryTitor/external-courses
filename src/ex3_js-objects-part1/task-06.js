@@ -4,18 +4,16 @@ function deepCloneObject(obj) {
   for (let key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)){
       let value = obj[key];
-      let newProperty = value;
 
       if (value !== null && typeof value === 'object') {
-          newProperty = deepCloneObject(value);
-          
-          if (Array.isArray(value)) {
-            newProperty.length = value.length;
-            newProperty = Array.from(newProperty);
-          }
+        if (Array.isArray(value)) {
+          newObj[key] = value.slice();
+        } else {
+          newObj[key] = deepCloneObject(value);
+        } 
+      } else {
+        newObj[key] = value;
       }
-
-      newObj[key] = newProperty;
     }
   }  
 
