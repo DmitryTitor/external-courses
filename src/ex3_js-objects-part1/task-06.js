@@ -6,11 +6,14 @@ function deepCloneObject(obj) {
       let value = obj[key];
 
       if (value !== null && typeof value === 'object') {
+        newObj[key] = deepCloneObject(value);
+
+        // Для перевода из объекта в массив нужно поле 'length' - длина массива.
+        // Array.from() переводит объект в массив.
         if (Array.isArray(value)) {
-          newObj[key] = value.slice();
-        } else {
-          newObj[key] = deepCloneObject(value);
-        } 
+          newObj[key].length = value.length;
+          Array.from(newObj[key]);
+        }
       } else {
         newObj[key] = value;
       }
