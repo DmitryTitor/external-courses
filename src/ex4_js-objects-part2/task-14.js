@@ -1,8 +1,8 @@
 function getRandomInteger(min, max) {
-  const integerMin = Math.ceil(min);
-  const integerMax = Math.floor(max);
-  
-  return Math.floor(Math.random() * (integerMax - integerMin + 1)) + integerMin;
+  const integerMin = Math.round(min);
+  const integerMax = Math.round(max);
+
+  return Math.round(integerMin - 0.5 + Math.random() * (integerMax - integerMin + 1));
 }
 
 module.exports = getRandomInteger;

@@ -1,5 +1,5 @@
 function findProtoProperty(property, obj) {
-  if (!Object.prototype.hasOwnProperty.call(obj, property)) {
+  if (Object.prototype.hasOwnProperty.call(obj.__proto__, property)) {
     return obj[property];
   }
   

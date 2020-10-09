@@ -1,16 +1,10 @@
 function addStringAfterWordInOtherString(str, inputingStr, wordNumber) {
-  const arr = str.split(' ');
-  let newStr = '';
+  const originalArray = str.split(' ');
+  const helperArray = originalArray.slice(0, wordNumber + 1);
+  helperArray.push(inputingStr);
+  const arrayWithInputedString = helperArray.concat(originalArray.slice(wordNumber + 1));
 
-  for (let i = 0; i < arr.length; i++) {
-    newStr += arr[i] + ' ';
-
-    if (wordNumber === i) {
-      newStr += inputingStr + ' ';
-    }
-  }
-
-  return newStr.slice(0, newStr.length - 1);
+  return arrayWithInputedString.join(' ');
 }
 
 module.exports = addStringAfterWordInOtherString;
