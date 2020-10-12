@@ -1,11 +1,17 @@
 function outputEncounteredAmountOfEachSymbol(str) {
-  let newStr = str;
-  let arr;
+  const result = {};
+  const symbolsArray = str.split("");
 
-  while (newStr.length > 0) {
-    arr = newStr.split(newStr.charAt(0));
-    console.log(`${newStr.charAt(0)}: ${arr.length - 1}`);
-    newStr = arr.join('');
+  for (let i = 0; i < symbolsArray.length; i++) {
+    if (result[symbolsArray[i]]) {
+      result[symbolsArray[i]] += 1;
+    } else {
+      result[symbolsArray[i]] = 1;
+    }
+  }
+
+  for (let key in result) {
+    console.log(`${key}: ${result[key]}`);
   }
 }
 
