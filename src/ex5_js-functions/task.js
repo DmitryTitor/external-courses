@@ -1,9 +1,11 @@
+const isValidValue = (num) => typeof num === 'number' && num !== NaN;
+
 class Calculator {
   constructor() {
     this.currentValue = 0;
 
     this.add = (num) => {
-      if (typeof num === 'number' && num !== NaN) {
+      if (isValidValue(num)) {
             this.currentValue += num;  
       }
   
@@ -11,7 +13,7 @@ class Calculator {
     };
   
     this.subtract = (num) => {
-      if (typeof num === 'number' && num !== NaN) {
+      if (isValidValue(num)) {
             this.currentValue -= num;  
       }
   
@@ -19,7 +21,7 @@ class Calculator {
     };
   
     this.divide = (num) => {
-      if (typeof num === 'number' && num !== NaN) {
+      if (isValidValue(num)) {
             this.currentValue /= num;  
       }
   
@@ -27,7 +29,7 @@ class Calculator {
     };
   
     this.multiply = (num) => {
-      if (typeof num === 'number' && num !== NaN) {
+      if (isValidValue(num)) {
             this.currentValue *= num;  
       }
   
