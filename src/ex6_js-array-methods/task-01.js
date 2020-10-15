@@ -1,13 +1,19 @@
+function getLoopConvertedIndex(originalIndex, length) {
+  if (-originalIndex >= length) {
+    return 0;
+  } 
+  
+  if (originalIndex >= length) {
+    return length;
+  } 
+  
+  return originalIndex >= 0 ? originalIndex : length + originalIndex;
+}
+
 function sliceAnalog(array, begin = 0, end = array.length) {
   const newArray = [];
-  const endIndex = end >= 0 ? end : array.length + end;
-  let beginIndex; 
-
-  if (Math.abs(begin) >= array.length) {
-    beginIndex = 0;
-  } else {
-    beginIndex = begin >= 0 ? begin : array.length + begin;
-  }
+  const beginIndex = getLoopConvertedIndex(begin, array.length);
+  const endIndex = getLoopConvertedIndex(end, array.length);
 
   for (let i = beginIndex; i < endIndex; i++) {
     newArray.push(array[i]);
