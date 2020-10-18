@@ -10,9 +10,9 @@ function outputEncounteredAmountOfEachSymbol(str) {
     }
   }
 
-  for (let key in result) {
-    console.log(`${key}: ${result[key]}`);
-  }
+  Object.entries(result).forEach(([key, value]) => {
+    console.log(`${key}: ${value}`);
+  });
 }
 
 module.exports = outputEncounteredAmountOfEachSymbol;
