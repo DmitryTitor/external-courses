@@ -1,0 +1,15 @@
+div {
+  font-size: 200%;
+}
+
+div.divBorder {
+  border: 2px solid black;
+}
+
+div.divOutline {
+  outline: 2px solid black;
+}
+
+div.divShadow {
+  box-shadow: 0 0 10px;
+}
