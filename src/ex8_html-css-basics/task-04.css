@@ -1,0 +1,29 @@
+p.firstParagraph {
+  font-family: 'Roboto Condensed';
+  font-size: 120%;
+  font-variant: small-caps;
+  font-style: oblique;
+}
+
+p.secondParagraph {
+  font-family: Verdana, sans-serif;
+  font-size: 90%;
+  font-variant: normal;
+  font-style: italic;
+}
+
+td.first {
+  font-size: 25px;
+}
+
+td.second {
+  font-size: 12pt;
+}
+
+td.third {
+  font-size: 250%;
+}
+
+img {
+  width: 10em;
+}
