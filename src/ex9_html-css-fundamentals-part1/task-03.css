@@ -1,0 +1,20 @@
+.buttonDiv {
+  border: 1px solid rgb(66, 66, 66);
+  border-radius: 6px;
+  display: inline-block;
+  background-color: #d6d6d6;
+}
+
+.button {
+  font-family: 'Arial Black', sans-serif;
+  color: rgb(66, 66, 66);
+  margin: 3px;
+  padding: 5px 8px;
+  border: 1px solid #b4b4b4;
+  border-radius: 6px;
+  background: linear-gradient(0deg, #b1b1b1, #ececec);
+}
+
+.star {
+  color: rgb(122, 122, 122);
+}
