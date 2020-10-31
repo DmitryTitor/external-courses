@@ -1,0 +1,7 @@
+.circle {
+  clip-path: circle(150px);
+}
+
+.hard-form {
+  clip-path: polygon(0% 40%, 0% 60%, 40% 100%, 60% 100%, 100% 60%, 100% 40%, 60% 0%, 40% 0%);
+}
