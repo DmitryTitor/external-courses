@@ -7,12 +7,20 @@
 }
 
 .background__lets-draw {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: white;
+  position: absolute;
+  display: block;
+  position: absolute;
+  z-index: 2;
 }
 
 .background__make-business {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: rgb(163, 163, 163);
-  transform: translateY(-50%);
+  /* position: absolute; */
+  /* top: 50%; */
+  transform: translateY(-20%);
   /* Запрет на выделение текста на главной фоновой картинке */
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -20,23 +28,15 @@
 }
 
 .background__and {
+  position: relative;
+  /* top: -100%; */
+  z-index: 1;
   font-size: 300%;
   color: cornflowerblue;
-  opacity: .3;
+  /* opacity: .8; */
 }
 
-.search__img {
-  display: block;
-  font-size: 150%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-100%,-50%);
-  left: 0%;
-  /* Запрет на выделение лупы как текста */
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
-}
+
 
 @media only screen and (min-width: 801px) {
   
@@ -57,7 +57,6 @@
   }
 
   .help-menu {  
-    width: 150%;
     display: flex;
     justify-content: right;
   }
@@ -118,6 +117,19 @@
     justify-content: right;
     margin-right: 8%;
     position: relative;
+  }
+
+  .search__img {
+    display: block;
+    font-size: 150%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-100%,-50%);
+    left: 0%;
+    /* Запрет на выделение лупы как текста */
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
   }
 
   .logo {
@@ -211,51 +223,71 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .header {
+  .header, .background__picture1, .background__picture2, .background__picture3, .background__arrow {
     display: none;
   }
 
   .header-mobile {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .menu-three-lines__img {
-    width: 10%;
+    justify-content: left;
   }
 
   .menu-three-lines {
-    width: 35%;
+    display: flex;
+    vertical-align: middle;
+    width: 40%; 
+  }
+
+  .menu-three-lines__img {
+    width: 20%;
+    margin-left: 4%;
   }
 
   .logo-mobile {
-    position: relative;
-    width: 20%;
-    margin-right: 15%;
-  }
-
-  .search {
-    width: 23%;
     display: flex;
-    flex-direction: row;
-    transform: scale(0.5);
+    vertical-align: middle;
+    justify-content: center;
+    width: 20%;
+    position: relative;
   }
 
+  
   .logo-mobile__img {
     width: 100%;
   }
-
+  
   .logo-mobile__word {
     position: absolute;
+    top: 50%;
     font-size: 200%;
-    top: 1%;
-    left: 25%;
+    transform: translateY(-50%);
     color: rgb(43, 106, 165);
     /* Запрет на выделение текста на логотипе */
     -moz-user-select: none;
     -khtml-user-select: none;
     user-select: none; 
+  }
+
+  .search {
+    width: 40%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+  }
+
+  .search__input {
+    display: block;
+  }
+
+  .search__img {
+    display: block;
+    font-size: 150%;
+    transform: translate(0%,20%);
+    /* Запрет на выделение лупы как текста */
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
   }
 
   .background {
