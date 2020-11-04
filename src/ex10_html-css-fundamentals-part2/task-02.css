@@ -1,0 +1,45 @@
+.personal-data > *, .contact-information > *{
+  display: block;
+  margin-bottom: 15px;
+}
+
+.block-label {
+  display: block;
+  margin: 15px 0;
+}
+
+.personal-data > .label-inline {
+  display: inline;
+}
+
+.title {
+  overflow-y: scroll;
+}
+
+.gender-choise, .city {
+  display: flex;
+  flex-direction: row;
+}
+
+/* .title {
+  display: flex;
+  flex-direction: row;
+  vertical-align: bottom;
+} */
+
+.required-input {
+  color: red;
+}
+
+/* Убрать стрелки у input "Age" */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+ 
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
+}

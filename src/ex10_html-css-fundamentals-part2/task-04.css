@@ -1,0 +1,362 @@
+.search__input {
+  border: none;
+}
+
+.little {
+  width: 5%;
+}
+
+.background__lets-draw {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+  position: absolute;
+  display: block;
+  position: absolute;
+  z-index: 2;
+}
+
+.background__make-business {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(163, 163, 163);
+  /* position: absolute; */
+  /* top: 50%; */
+  transform: translateY(-20%);
+  /* Запрет на выделение текста на главной фоновой картинке */
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;     
+}
+
+.background__and {
+  position: relative;
+  /* top: -100%; */
+  z-index: 1;
+  font-size: 300%;
+  color: cornflowerblue;
+  /* opacity: .8; */
+}
+
+
+
+@media only screen and (min-width: 801px) {
+  
+  .header-mobile {
+    display: none;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-and-help-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 3% 10%;
+  }
+
+  .help-menu {  
+    display: flex;
+    justify-content: right;
+  }
+
+  .help-menu__div {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 0px 10px;
+  }
+
+  .help-menu__icon {
+    margin: auto;
+  }
+  
+  .help-menu__phone{
+    transform: scale(2);
+  }
+
+  .main-menu-and-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid gray;
+  }
+
+  .main-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    white-space: nowrap;
+    margin-left: 8%;
+  }
+
+  .main-menu__point {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(92, 92, 92);
+    position: relative;
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .main-menu__point:hover .triangle {
+    display: block;
+  }
+
+  .main-menu__point:hover {
+    color: cornflowerblue;
+  }
+
+  .left_border {
+    border-left: 1px solid gray;
+  }
+
+  .search {
+    display: flex;
+    justify-content: right;
+    margin-right: 8%;
+    position: relative;
+  }
+
+  .search__img {
+    display: block;
+    font-size: 150%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-100%,-50%);
+    left: 0%;
+    /* Запрет на выделение лупы как текста */
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+  }
+
+  .logo {
+    position: relative;
+  }
+
+  .logo__word {
+    position: absolute;
+    font-size: 300%;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(43, 106, 165);
+    /* Запрет на выделение текста на логотипе */
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;     
+  }
+
+  .triangle {
+    position: absolute;
+    top: 100%;
+    transform: translateY(-100%);
+    display: none;
+  }
+
+  .help-menu__phone:hover, .help-menu__geo:hover, .help-menu__mail:hover {
+    fill: rgb(65, 158, 245);
+  }
+
+  .background {
+    position: relative;
+  }
+
+  .background__img {
+    width: 100%;
+  }
+
+  .background__words {
+    font-size: 200%;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+  }
+
+  .background__pictures {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    display: flex;
+    justify-content: left;
+  }
+
+  .background__picture3 {
+    display: block;
+    width: 5rem;
+    background-image: url(img/nav_back.png);
+  }
+
+  .background__arrow {
+    position: absolute;
+    top: 50%;
+    left: 93%;
+    transform: translateY(-50%);
+  }
+
+  .background__arrow-block {
+    fill:gainsboro;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    margin: 5% 10% 0% 10%;
+  }
+  
+  .footer__about-isama, .footer__why-exist {
+    display: flex;
+    flex-direction: row;
+    width: 35%;
+  }
+  
+  .footer__about-isama {
+    margin-right: 5%;
+  }
+  
+  .footer__lamp-div {
+    margin-right: 3%;
+  }
+  
+}
+
+@media only screen and (max-width: 800px) {
+  .header, .background__picture1, .background__picture2, .background__picture3, .background__arrow {
+    display: none;
+  }
+
+  .header-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+  }
+
+  .menu-three-lines {
+    display: flex;
+    vertical-align: middle;
+    width: 40%; 
+  }
+
+  .menu-three-lines__img {
+    width: 20%;
+    margin-left: 4%;
+  }
+
+  .logo-mobile {
+    display: flex;
+    vertical-align: middle;
+    justify-content: center;
+    width: 20%;
+    position: relative;
+  }
+
+  
+  .logo-mobile__img {
+    width: 100%;
+  }
+  
+  .logo-mobile__word {
+    position: absolute;
+    top: 50%;
+    font-size: 200%;
+    transform: translateY(-50%);
+    color: rgb(43, 106, 165);
+    /* Запрет на выделение текста на логотипе */
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none; 
+  }
+
+  .search {
+    width: 40%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+  }
+
+  .search__input {
+    display: block;
+  }
+
+  .search__img {
+    display: block;
+    font-size: 150%;
+    transform: translate(0%,20%);
+    /* Запрет на выделение лупы как текста */
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+  }
+
+  .background {
+    position: relative;
+  }
+
+  .background__img {
+    width: 100%;
+  }
+
+  .background__pictures {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    display: flex;
+    justify-content: left;
+  }
+
+  .background__picture1, .background__picture2 {
+    width: 50%;
+    height: 50%;
+  }
+
+  .background__picture3 {
+    display: block;
+    width: 3rem;
+    background-image: url(img/nav_back.png);
+  }
+
+  .background__arrow-block {
+    fill: gainsboro;
+    height: 104px;
+    width: 90px;
+  }
+
+  .background__arrow {
+    position: absolute;
+    top: 50%;
+    left: 91%;
+    transform: translateY(-50%);
+  }
+
+  .background__words {
+    /* font-size: 100%; */
+    position: absolute;
+    top: 25%;
+    left: 30%;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .footer__about-isama, .footer__why-exist {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .footer__tree-div {
+    margin-right: 2%;
+  }
+
+  .footer__about-isama {
+    margin-bottom: 3%;
+  }
+
+}

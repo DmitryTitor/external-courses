@@ -1,0 +1,11 @@
+.tr {
+  background-color: rgb(198, 209, 255);
+}
+
+.tr:nth-child(odd) { 
+  background-color: rgb(223, 229, 253);
+}
+
+.tr:hover {
+  background-color: rgb(146, 168, 255);
+}

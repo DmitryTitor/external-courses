@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="task-02.css">
+  <title>task-02</title>
+</head>
+
+<body>
+  
+  <form action="http://httpbin.org/get" method="GET" class="main-form">
+
+    <fieldset class="personal-data">
+      <legend>Personal data </legend>
+      
+      <label>
+        Surname<span class="required-input">*</span> <input type="text" name="surname" class="surname" required>
+      </label>
+
+      <label>
+        First Name<span class="required-input">*</span> <input type="text" name="first-name" class="first-name" required>
+      </label>
+
+      <label>
+        Middle Name <input type="text" name="middle-name" class="middle-name">
+      </label>
+      
+      <div class="gender-choise">
+        <label>
+          You are 
+        </label>
+
+        <label>
+          <input type="radio" name="gender" value="male" id="male" checked>male
+        </label>
+        
+        <label>
+          <input type="radio" name="gender" value="female" id="female">female
+        </label>
+      </div>
+
+      <label>
+        Age <input type="number" name="age" min="18" max="101">
+      </label>
+
+      <div class="country">
+        <label>Country of Residence </label>
+
+        <select name="country">
+          <option value="Russia" selected>Russia</option>
+          <option value="Ukraine">Ukraine</option>
+          <option value="Belarus">Belarus</option>
+        </select>
+      </div>
+
+      <div class="city">
+        <label>City </label>
+
+        <label>
+          <input type="checkbox" name="city" value="Ryazan">Ryazan
+        </label>
+
+        <label>
+          <input type="checkbox" name="city" value="Moscow">Moscow
+        </label>
+      </div>
+
+      <label>
+        Photography
+        <input type="file">
+      </label>
+      <hr>
+
+      <div class="title">
+        <label>Title </label>
+
+        <textarea class="title" name="title" cols="25" rows="8">
+Technologies
+Web Master
+Database Administrator
+Computer-aided design
+Finance
+Economic Planning
+Management accounting
+Budgeting and planning
+        </textarea>
+      </div>
+
+      <label>
+        Salary 
+        <input type="range" min="0" max="100" step="1" value="50">
+      </label>
+
+      <textarea name="user-about" cols="50" rows="10" placeholder="Tell us about yourself..."></textarea>
+
+    </fieldset>
+  
+    <fieldset class="contact-information">
+      <legend>Contact information</legend>
+
+      <label>
+        Site 
+        <input type="text" name="site">
+      </label>
+      <label>
+        Email
+        <input type="email" name="email">
+      </label>
+      <label>
+        Phone
+        <input type="tel" name="phone">
+      </label>
+    </fieldset>
+
+    <label class="block-label">
+      Password<span class="required-input">*</span> 
+      <input type="password" required>
+    </label>
+
+    <input type="submit" value="Отправить">
+    <input type="reset" value="Сбросить">
+
+  </form>
+
+</body>
+
+</html>
