@@ -1,0 +1,67 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.div {
+  margin-top: 15%;
+  position: relative;
+}
+
+.input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+}
+
+.label {
+  position: absolute;
+  top: -60%;
+  left: 0;
+  color: gray;
+  display: none;
+}
+
+.input {
+  width: 21ch;
+  font-family: monospace;
+  caret-color: #0eb9e9;
+  white-space: nowrap;
+}
+
+.input:focus ~ .label, .input:valid ~ .label {
+  display: inline;
+  opacity: 0.3;
+  animation: upTitle 1s;
+  animation-fill-mode: forwards;
+  color: gray;
+}
+
+.input:not(:focus) ~ .label, .input:not(:valid) ~ .label {
+  display: inline;
+  animation: downTitle 1s;
+  animation-fill-mode: forwards;
+  /* animation-direction: reverse;  */
+  color: gray;
+}
+
+@keyframes upTitle {
+  to {
+    top: -20px;
+    color: #0eb9e9;
+    opacity: 1;
+  }
+}
+
+@keyframes downTitle {
+  from {
+    top: -100%;
+    color: #0eb9e9;
+  }
+
+  to {
+    top: -12px;
+    color: gray;
+  }
+}
