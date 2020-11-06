@@ -1,0 +1,47 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.field { 
+  position: relative; 
+  font-family: Arial; 
+  font-weight: bold; 
+  display: inline-block; 
+  margin-top: 15%;
+}
+
+label { 
+  position:absolute; 
+  left:0; 
+  top:0; 
+  transition: all .2s linear; 
+  color:#999; 
+  font-size:10px; 
+}
+
+input { 
+  margin-top:15px; 
+  border: none;
+  border-bottom:1px solid #999; 
+  padding:3px 2px; 
+  caret-color: rgb(26, 115, 187); 
+}
+
+input:invalid + label { 
+  top:3px; 
+  opacity:0; 
+}
+
+input:valid + label { 
+  opacity:1; 
+  top:0; 
+}
+
+input:focus { 
+  outline:none; 
+}
+
+input:focus + label { 
+  color:rgb(26, 115, 187); 
+}
