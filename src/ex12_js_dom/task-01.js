@@ -1,84 +1,44 @@
-class Slider {
-  constructor() {
-    
-    this.imgArray = this.getImgArray();
-    this.currentIndexImg = 0;
-    this.currentImg = this.imgArray[this.currentIndexImg];
+function createDefaultElement() {
+  const newElement = document.createElement('img');
+  const divSlider = document.querySelector('.slider__pictures');
 
-    this.init();
-  }
-  
-  init() {
-    this.createDefaultElement();
-    const butBack = document.querySelector('.slider__button_back');
-    const butForth = document.querySelector('.slider__button_forth');
-
-    butBack.addEventListener("click", () => this.changeImg(false) , false);
-    butForth.addEventListener("click", () => this.changeImg(true) , false);
-  }
-
-  createDefaultElement() {
-    const newElement = document.createElement('img');
-    const divSlider = document.querySelector('.slider__pictures');
-
-    newElement.classList.add('img');
-    newElement.setAttribute('src', this.currentImg.src);
-    
-    divSlider.appendChild(newElement);
-  }
-  
-  getImgArray() {
-    const imgArray = [];
-    const arrImgPathArray = ['img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg', 'img/img4.jpg', 'img/img5.jpg'];
-    
-    for(let i = 0; i < arrImgPathArray.length; i++) {
-      this.pushImgInArray(imgArray, arrImgPathArray[i]);
-    }
-    
-    return imgArray;
-  }
-  
-  pushImgInArray(imgArray, imgPath) {
-    const img = new Image();
-    
-    img.src = imgPath;
-    imgArray.push(img);
-  }
-  
-  changeImg(nextImg) {
-    const divSlider = document.querySelector('.slider__pictures');
-    const oldImg = document.querySelector('.img');
-    const newImg = document.createElement('img');
-
-    newImg.classList.add('img');
-    this.changeImgIndex(nextImg);
-    this.currentImg = this.imgArray[this.currentIndexImg];
-    newImg.setAttribute('src', this.currentImg.src);
-    divSlider.classList.add('div-animation');
-    newImg.classList.add('img-animation-to');
-    divSlider.replaceChild(newImg, oldImg);
-    
-  }
-  
-  changeImgIndex(nextImg) {
-    if (nextImg) {
-      if (this.imgArray[this.currentIndexImg+1] !== undefined) {
-        return this.currentIndexImg++;
-      }
-
-      this.currentIndexImg = 0;
-
-      return this.currentIndexImg;
-    }
-
-    if (this.imgArray[this.currentIndexImg-1] !== undefined) {
-      return this.currentIndexImg--;
-    }
-
-    this.currentIndexImg = this.imgArray.length-1;
-
-    return this.currentIndexImg;
-  }
+  newElement.classList.add('img');
+  newElement.setAttribute('src', 'img/img1.jpg');
+  divSlider.appendChild(newElement);
 }
 
-slider = new Slider();
+function changeImg(imgArray, currentIndex, isNextImg) {
+
+  const divSlider = document.querySelector('.slider__pictures');
+  const oldImg = document.querySelector('.img');
+  const newImg = document.createElement('img');
+  let index;
+
+  if(isNextImg) {
+    index = currentIndex >= imgArray.length - 1 ? 0 : (currentIndex + 1);
+  } else {
+    index = currentIndex <= 0 ? imgArray.length - 1 : (currentIndex - 1);
+  }
+
+  newImg.classList.add('img');
+  newImg.setAttribute('src', imgArray[index]);
+  divSlider.classList.add('div-animation');
+  newImg.classList.add('img-animation-to');
+  divSlider.replaceChild(newImg, oldImg);
+
+  return index;
+}
+
+const butBack = document.querySelector('.slider__button_back');
+const butForth = document.querySelector('.slider__button_forth');
+const imgArray = ['img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg', 'img/img4.jpg', 'img/img5.jpg'];
+let currentIndex = 0;
+
+butBack.addEventListener("click", () => {
+  return (currentIndex = changeImg(imgArray, currentIndex, false))
+}, false);
+butForth.addEventListener("click", () => {
+  return (currentIndex = changeImg(imgArray, currentIndex, true));
+}, false);
+
+createDefaultElement();
