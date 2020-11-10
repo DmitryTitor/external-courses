@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+}
+
+body {
+  background-color: #0079BF
+}
+
+.header, .footer {
+  background-color: #0067A3;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  padding: 0.5% 0%;
+}
+
+.footer {
+  padding: 0.5% 0%;
+  color: white;
+  position: absolute;
+  top: 100%;
+  transform: translateY(-100%);
+  width: 100%;
+}
+
+.header__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.header__menu {
+  margin: 0 5px;
+}
+
+.header__menu:hover, .header__create-list:hover, .header__person:hover, .header__arrow:hover {
+  background-color: #5EA6D1;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.header__words {
+  color: white;
+  font-size: 28px;
+  font-family: "Roboto";
+  margin: 0 5px;
+}
+
+.header__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.header__create-list-div {
+  display: flex;
+  align-items: center;
+  padding: 1% 15px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.header__create-list {
+  margin-right: 5px;
+}
+
+.header__create-list-words {
+  margin-left: 5px; 
+}
+
+.header__create-list-words, .footer__active-tasks, .footer__finished-tasks, .footer__cop {
+  font-family: "Roboto";
+  font-size: 18px;
+}
+
+
+.header__person {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-left: 35px;
+}
+
+.header__arrow {
+  display: inline;
+}
+
+
+.footer__left {
+  margin: 0.5% 0 0.5% 2%;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer__active-tasks, .footer__finished-tasks {
+  margin: 0 15px;
+}
+
+.footer__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 2%;
+}
