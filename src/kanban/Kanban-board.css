@@ -103,8 +103,8 @@
 
 .header__drop_down {
   position: absolute;
-  top: 100%;
-  left: 48%;
+  top: 45px;
+  left: 145px;
   font-family: "Roboto";
   font-size: 24px;
   background-color: white;
