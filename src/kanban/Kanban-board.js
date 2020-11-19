@@ -1,31 +1,203 @@
-const parent = document.querySelector('.header__right');
-const menu = document.createElement('div');
+const tasksString = localStorage.getItem("tasks");
+const tasks = JSON.parse(tasksString);
+let idCount = +localStorage.getItem("id-count");
+
+const blocks = {
+  backlog: document.querySelector('.main__backlog .task_block__div'),
+  ready: document.querySelector('.main__ready .task_block__div'),
+  inProgress: document.querySelector('.main__in_progress .task_block__div'),
+  finished: document.querySelector('.main__finished .task_block__div'),
+};
+
+const addButtons = {
+  backlog: document.querySelector('.main__backlog > .task_block__div_Button_Menu > .task_block__add_task'),
+  ready: document.querySelector('.main__ready > .task_block__div_Button_Menu > .task_block__add_task'),
+  inProgress: document.querySelector('.main__in_progress > .task_block__div_Button_Menu > .task_block__add_task'),
+  finished: document.querySelector('.main__finished > .task_block__div_Button_Menu > .task_block__add_task'),
+};
+
+const taskFooters = {
+  backlog: document.querySelector('.main__backlog > .task_block__div_Button_Menu'),
+  ready: document.querySelector('.main__ready > .task_block__div_Button_Menu'),
+  inProgress: document.querySelector('.main__in_progress > .task_block__div_Button_Menu'),
+  finished: document.querySelector('.main__finished > .task_block__div_Button_Menu'),
+};
+
+const taskBlocksOrder = ['backlog', 'ready', 'inProgress', 'finished'];
 const itemTextArray = ['Some text', 'Your Profile', 'Settings', 'Sign out', 'Help'];
+const parent = document.querySelector('.header__right');
 const arrow = document.querySelector('.header__arrow');
+const menu = document.createElement('div');
 
 menu.classList.add('header__drop_down');
 
 for (let i = 0; i < itemTextArray.length; i++) {
-  menu.appendChild(createMenuItem(itemTextArray[i]));
+  menu.appendChild(createMainMenuItem(itemTextArray[i], 'drop_down__item', 'div'));
+
 }
 
-arrow.addEventListener("click", changeMenuStatus, false);
-
-function changeMenuStatus() {
+arrow.addEventListener("click", () => changeMenuStatus(parent, arrow, menu, 'rotate_element'), false);
+arrow.addEventListener('blur', () => {
   if (arrow.classList.contains('rotate_element')) {
     parent.removeChild(menu);
     arrow.classList.remove('rotate_element');
+  }
+})
+
+function changeMenuStatus(divMenu, buttonsWithDropDown, menu, className) {
+  if (buttonsWithDropDown.classList.contains(className)) {
+    divMenu.removeChild(menu);
+    buttonsWithDropDown.classList.remove(className);
   } else {
-    parent.appendChild(menu);
-    arrow.classList.add('rotate_element');
+    divMenu.appendChild(menu);
+    buttonsWithDropDown.classList.add(className);
   }
 }
 
-function createMenuItem(text) {
-  const newElement = document.createElement('div');
+const renderTasks = () => {
+  localStorage.setItem("id-count", `${idCount}`);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  Object.keys(tasks).forEach(key => {
+    blocks[key].innerHTML = '';
+    tasks[key].forEach(task => {
+      const taskElem = document.createElement('textarea');
+      taskElem.setAttribute('readonly', true);
+      taskElem.innerText = task.title;
+      taskElem.id = task.id;
+      taskElem.className = 'task_block__task';
+      blocks[key].appendChild(taskElem)
+    })
+  })
 
-  newElement.classList.add('drop_down__item');
+  taskBlocksOrder.forEach((key, i) => {
+    const nextKey = taskBlocksOrder[i + 1];
+
+    if (!nextKey) {
+      return;
+    }
+
+    if (tasks[key].length) {
+      addButtons[nextKey].disabled = false;
+    } else {
+      addButtons[nextKey].disabled = true;
+    }
+  })
+}
+
+taskBlocksOrder.forEach(key => {
+  if (key === 'backlog') {
+    addButtons[key].addEventListener('click', () => {
+      if (taskFooters[key].children[0].getAttribute('class') === 'create_task') {
+        if (Event.target) {
+          let value = Event.target.value;
+          if (!value) {
+            return;
+          }
+        } else {
+          return;
+        }
+
+        idCount += 1;
+        tasks[key].push({ id: idCount, title: value })
+        textarea.remove();
+        renderTasks();
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.classList.add('create_task');
+        addButtons[key].parentElement.insertBefore(textarea, addButtons[key]);
+        textarea.addEventListener('blur', ({ target: { value } }) => {
+          if (!value) {
+            return;
+          }
+
+          idCount += 1;
+          tasks[key].push({ id: idCount, title: value })
+          textarea.remove();
+          renderTasks();
+        })
+      }
+    })
+
+    return;
+  }
+
+  addButtons[key].addEventListener('click', () => {
+    deleteDropDownMenus(false, key);
+    if (taskFooters[key].children[1] && taskFooters[key].children[1].getAttribute('class') === 'main__drop_down') {
+      taskFooters[key].removeChild(taskFooters[key].children[1]);
+      addButtons[key].classList.remove('task_block__add_task_selected');
+    } else {
+      const menu = document.createElement('div');
+      const taskView = () => {
+        for (let i = 0; i < taskBlocksOrder.length; i++) {
+          if (taskBlocksOrder[i] === key) {
+            return taskBlocksOrder[i - 1];
+          }
+        }
+
+        return undefined;
+      }
+      const arr = tasks[taskView()];
+
+      addButtons[key].classList.add('task_block__add_task_selected');
+      menu.classList.add('main__drop_down');
+
+      for (let i = 0; i < arr.length; i++) {
+        menu.appendChild(createMenuItem(arr[i].title, 'main_drop_down__item', 'div', arr[i].id, key, taskView()));
+      }
+
+      taskFooters[key].appendChild(menu);
+    }
+  })
+});
+
+function createMainMenuItem(text, className, containerClass) {
+  const newElement = document.createElement(containerClass);
+
+  newElement.classList.add(className);
   newElement.innerHTML = text;
 
   return newElement;
 }
+
+function createMenuItem(text, className, containerClass, id, key, previousKey) {
+  const newElement = document.createElement(containerClass);
+
+  newElement.classList.add(className);
+  newElement.innerHTML = text;
+  newElement.id = id;
+  newElement.addEventListener('click', ({ target }) => {
+    let id2 = target.getAttribute('id');
+    let text2 = target.innerHTML;
+
+    tasks[key].push({ id: id2, title: text2 })
+    target.remove();
+
+    for (let k = 0; k < tasks[previousKey].length; k++) {
+      if (+tasks[previousKey][k].id === +id2) {
+        tasks[previousKey].splice(k, 1);
+      }
+    }
+
+    deleteDropDownMenus();
+    renderTasks();
+  })
+
+  return newElement;
+}
+
+function deleteDropDownMenus(isClose = true, keyNotClose) {
+  taskBlocksOrder.forEach(key => {
+    if (key !== 'backlog') {
+      if (taskFooters[key].children[1] && taskFooters[key].children[1].getAttribute('class') === 'main__drop_down') {
+        if (isClose || keyNotClose !== key) {
+          taskFooters[key].removeChild(taskFooters[key].children[1]);
+          addButtons[key].classList.remove('task_block__add_task_selected');
+        }
+      }
+    }
+  })
+
+}
+
+renderTasks();
