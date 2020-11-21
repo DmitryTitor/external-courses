@@ -36,7 +36,7 @@ for (let i = 0; i < itemTextArray.length; i++) {
 
 }
 
-arrow.addEventListener("click", () => changeMenuStatus(parent, arrow, menu, 'rotate_element'), false);
+arrow.addEventListener('click', () => changeMenuStatus(parent, arrow, menu, 'rotate_element'), false);
 arrow.addEventListener('blur', () => {
   if (arrow.classList.contains('rotate_element')) {
     parent.removeChild(menu);
@@ -55,8 +55,8 @@ function changeMenuStatus(divMenu, buttonsWithDropDown, menu, className) {
 }
 
 const renderTasks = () => {
-  localStorage.setItem("id-count", `${idCount}`);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem('id-count', `${idCount}`);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
   Object.keys(tasks).forEach(key => {
     blocks[key].innerHTML = '';
     tasks[key].forEach(task => {
@@ -73,7 +73,7 @@ const renderTasks = () => {
     const nextKey = taskBlocksOrder[i + 1];
 
     if (!nextKey) {
-      return;
+      return undefined;
     }
 
     if (tasks[key].length) {
@@ -81,75 +81,89 @@ const renderTasks = () => {
     } else {
       addButtons[nextKey].disabled = true;
     }
+
+    return undefined;
   })
 }
 
 taskBlocksOrder.forEach(key => {
   if (key === 'backlog') {
+    initionalBacklogButtonClick(key);
+  } else {
     addButtons[key].addEventListener('click', () => {
-      if (taskFooters[key].children[0].getAttribute('class') === 'create_task') {
-        if (Event.target) {
-          let value = Event.target.value;
-          if (!value) {
-            return;
-          }
-        } else {
-          return;
-        }
-
-        idCount += 1;
-        tasks[key].push({ id: idCount, title: value })
-        textarea.remove();
-        renderTasks();
+      deleteDropDownMenus(false, key);
+      if (taskFooters[key].children[1] && taskFooters[key].children[1].getAttribute('class') === 'main__drop_down') {
+        taskFooters[key].removeChild(taskFooters[key].children[1]);
+        addButtons[key].classList.remove('task_block__add_task_selected');
       } else {
-        const textarea = document.createElement('textarea');
-        textarea.classList.add('create_task');
-        addButtons[key].parentElement.insertBefore(textarea, addButtons[key]);
-        textarea.addEventListener('blur', ({ target: { value } }) => {
-          if (!value) {
-            return;
-          }
+        const menu = document.createElement('div');
+        const taskView = taskBlocksOrder[taskViewCalc(key) - 1];
+        const arr = tasks[taskView];
 
-          idCount += 1;
-          tasks[key].push({ id: idCount, title: value })
-          textarea.remove();
-          renderTasks();
+        addButtons[key].classList.add('task_block__add_task_selected');
+        menu.classList.add('main__drop_down');
+
+        arr.forEach(element => {
+          menu.appendChild(createMenuItem(element.title, 'main_drop_down__item', 'div', element.id, key, taskView));
         })
+
+        taskFooters[key].appendChild(menu);
       }
     })
+  }
+});
 
-    return;
+function taskViewCalc(key) {
+  return taskBlocksOrder.findIndex((element) => {
+    if (element !== key) {
+      return false;
+    }
+
+    return element;
+  });
+}
+
+function initionalBacklogButtonClick(key) {
+  addButtons[key].addEventListener('click', () => {
+    if (taskFooters[key].children[0].getAttribute('class') === 'create_task') {
+      pushCreatedTask(key, target);
+    } else {
+      createTaskTextareaToInput(key);
+    }
+  });
+
+  return undefined;
+}
+
+function pushCreatedTask(key, eventTarget) {
+  if (!eventTarget || !eventTarget.value) {
+    return undefined;
   }
 
-  addButtons[key].addEventListener('click', () => {
-    deleteDropDownMenus(false, key);
-    if (taskFooters[key].children[1] && taskFooters[key].children[1].getAttribute('class') === 'main__drop_down') {
-      taskFooters[key].removeChild(taskFooters[key].children[1]);
-      addButtons[key].classList.remove('task_block__add_task_selected');
-    } else {
-      const menu = document.createElement('div');
-      const taskView = () => {
-        for (let i = 0; i < taskBlocksOrder.length; i++) {
-          if (taskBlocksOrder[i] === key) {
-            return taskBlocksOrder[i - 1];
-          }
-        }
+  idCount += 1;
+  tasks[key].push({ id: idCount, title: eventTarget.value })
+  renderTasks();
 
-        return undefined;
-      }
-      const arr = tasks[taskView()];
+  return undefined;
+}
 
-      addButtons[key].classList.add('task_block__add_task_selected');
-      menu.classList.add('main__drop_down');
-
-      for (let i = 0; i < arr.length; i++) {
-        menu.appendChild(createMenuItem(arr[i].title, 'main_drop_down__item', 'div', arr[i].id, key, taskView()));
-      }
-
-      taskFooters[key].appendChild(menu);
+function createTaskTextareaToInput(key) {
+  const textarea = document.createElement('textarea');
+  textarea.classList.add('create_task');
+  addButtons[key].parentElement.insertBefore(textarea, addButtons[key]);
+  textarea.addEventListener('blur', ({ target: { value } }) => {
+    if (!value) {
+      return undefined;
     }
+
+    idCount += 1;
+    tasks[key].push({ id: idCount, title: value })
+    textarea.remove();
+    renderTasks();
+
+    return undefined;
   })
-});
+}
 
 function createMainMenuItem(text, className, containerClass) {
   const newElement = document.createElement(containerClass);
@@ -173,11 +187,15 @@ function createMenuItem(text, className, containerClass, id, key, previousKey) {
     tasks[key].push({ id: id2, title: text2 })
     target.remove();
 
-    for (let k = 0; k < tasks[previousKey].length; k++) {
-      if (+tasks[previousKey][k].id === +id2) {
-        tasks[previousKey].splice(k, 1);
+    const spliceIndex = tasks[previousKey].findIndex(element => {
+      if (+element.id === +id2) {
+        return true;
       }
-    }
+
+      return false;
+    });
+
+    tasks[previousKey].splice(spliceIndex, 1);
 
     deleteDropDownMenus();
     renderTasks();
@@ -188,16 +206,16 @@ function createMenuItem(text, className, containerClass, id, key, previousKey) {
 
 function deleteDropDownMenus(isClose = true, keyNotClose) {
   taskBlocksOrder.forEach(key => {
-    if (key !== 'backlog') {
-      if (taskFooters[key].children[1] && taskFooters[key].children[1].getAttribute('class') === 'main__drop_down') {
-        if (isClose || keyNotClose !== key) {
-          taskFooters[key].removeChild(taskFooters[key].children[1]);
-          addButtons[key].classList.remove('task_block__add_task_selected');
-        }
-      }
+    if ((key === 'backlog') || !(taskFooters[key].children[1] && taskFooters[key].children[1].getAttribute('class') === 'main__drop_down')
+      || (!isClose && keyNotClose === key)) {
+      return false;
     }
-  })
 
+    taskFooters[key].removeChild(taskFooters[key].children[1]);
+    addButtons[key].classList.remove('task_block__add_task_selected');
+
+    return undefined;
+  })
 }
 
 renderTasks();
