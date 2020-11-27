@@ -55,7 +55,7 @@ const Calculator = {
 
   fetchData: function(callback) {
     setTimeout(() => {
-      Calculator.setState(callback(500))
+      callback(500);
     }, 1000);
 
     return this;

@@ -1,12 +1,8 @@
 function Hangman(word) {
   this.word = word.toLowerCase();
-  this.guessedLetters = '';
+  this.guessedLetters = this.word.split('').map(() => '_').join('');
   this.attempts = 6;
   this.wrongInputSymbolsArr = [];
-
-  for (let i = 0; i < this.word.length; i++) {
-    this.guessedLetters += '_';
-  }
 
   this.guess = function (symbol) {
     const symbolLowerCase = symbol.toLowerCase();
@@ -23,26 +19,16 @@ function Hangman(word) {
       }
 
       this.wrongInputSymbolsArr.push(symbolLowerCase);
-
-      let wrongSymbolStr = this.wrongInputSymbolsArr[0];
-
-      for (let k = 1; k < this.wrongInputSymbolsArr.length; k++) {
-        wrongSymbolStr += ',' + this.wrongInputSymbolsArr[k];
-      }
-
-      console.log(`Буквы ${symbol} нету! Осталось попыток: ${this.attempts} | ${wrongSymbolStr}`);
+      console.log(`Буквы ${symbol} нету! Осталось попыток: ${this.attempts} | ${this.wrongInputSymbolsArr.join()}`);
     } else {
-      let newString = '';
-
-      for (let i = 0; i < this.word.length; i++) {
-        if (this.word[i] === symbolLowerCase) {
-          newString += symbolLowerCase;
-        } else {
-          newString += this.guessedLetters[i];
+      this.guessedLetters = this.guessedLetters.split('').map((currentValue, index) => {
+        if (this.word[index] === symbolLowerCase) {
+          return symbolLowerCase;
         }
-      }
 
-      this.guessedLetters = newString;
+        return currentValue;
+      }).join('');
+
       console.log(this.guessedLetters);
       this.checkForWin();
     }
@@ -88,16 +74,12 @@ function Hangman(word) {
   
   this.startAgain = function(word) {
     this.word = word.toLowerCase();
-    this.guessedLetters = '';
+    this.guessedLetters = this.word.split('').map(() => '_').join('');
     this.attempts = 6;
     this.wrongInputSymbolsArr = [];
-
-    for (let i = 0; i < this.word.length; i++) {
-      this.guessedLetters += '_';
-    }
 
     return this;
   }
 }
 
-module.exports = new Hangman;
+module.exports = new Hangman();
