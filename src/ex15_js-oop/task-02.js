@@ -9,11 +9,7 @@ class ElectricalAppliances {
   set name(value) {
     if (typeof value === 'string' && value) {
       this._name = value;
-
-      return this._name;
     }
-
-    return undefined;
   }
 
   get name() {
@@ -22,8 +18,6 @@ class ElectricalAppliances {
 
   set isInSocket(value) {
     this._isInSocket = value;
-
-    return this._isInSocket;
   }
 
   get isInSocket() {
@@ -33,11 +27,7 @@ class ElectricalAppliances {
   set power(value) {
     if (value > 0) {
       this._power = value;
-
-      return this._power;
     }
-
-    return undefined;
   }
 
   get power() {
@@ -50,11 +40,7 @@ class ElectricalAppliances {
         roomsArray.push(value);
       }
       this._room = value;
-
-      return this._room;
     }
-
-    return undefined;
   }
 
   get room() {
@@ -71,11 +57,7 @@ class Kettle extends ElectricalAppliances {
   set volume(value) {
     if (value > 0) {
       this._volume = value;
-
-      return this._volume;
     }
-
-    return undefined;
   }
 
   get volume() {
@@ -91,8 +73,6 @@ class Iron extends ElectricalAppliances {
 
   set isSteamFunction(value) {
     this._isSteamFunction = value;
-
-    return this._isSteamFunction;
   }
 
   get isSteamFunction() {
@@ -109,11 +89,7 @@ class Toaster extends ElectricalAppliances {
   set maxTemperature(value) {
     if (value > 0) {
       this._maxTemperature = value;
-
-      return this._maxTemperature;
     }
-
-    return undefined;
   }
 
   get maxTemperature() {

@@ -1,43 +1,45 @@
+const compareWeight = (obj1, obj2) => {
+  if (obj1.weight > obj2.weight) return 1;
+  if (obj1.weight === obj2.weight) return 0;
+  return -1;
+}
+
 function Sweets(name, weight) {
   this.name = name;
   this.weight = weight;
 }
 
-function SweetmeatsCandy(candyShape) {
+function SweetmeatsCandy(nameSweetmeats, weightSweetmeats, candyShape) {
+  Sweets.call(this, nameSweetmeats, weightSweetmeats);
+
   this.candyShape = candyShape;
 }
 
-function CaramelCandy(syrupView) {
+function CaramelCandy(nameCaramel, weightCaramel, syrupView) {
+  Sweets.call(this, nameCaramel, weightCaramel);
+
   this.syrupView = syrupView;
 }
 
-function Chocolate(bitterness) {
+function Chocolate(nameChocolate, weightChocolate, bitterness) {
+  Sweets.call(this, nameChocolate, weightChocolate);
+
   this.bitterness = bitterness;
 }
 
-function CollectChildrenGift(nameSweetmeats, weightSweetmeats, candyShape, nameCaramel, weightCaramel, syrupView, nameChocolate,
-  weightChocolate, bitterness) {
-  SweetmeatsCandy.prototype = new Sweets(nameSweetmeats, weightSweetmeats);
-  CaramelCandy.prototype = new Sweets(nameCaramel, weightCaramel);
-  Chocolate.prototype = new Sweets(nameChocolate, weightChocolate);
-
+function CollectChildrenGift({nameSweetmeats, weightSweetmeats, candyShape}, {nameCaramel, weightCaramel, syrupView}, {nameChocolate,
+  weightChocolate, bitterness}) {
   this.sweetsArray = [
-    new SweetmeatsCandy(candyShape),
-    new CaramelCandy(syrupView),
-    new Chocolate(bitterness),
+    new SweetmeatsCandy(nameSweetmeats, weightSweetmeats, candyShape),
+    new CaramelCandy(nameCaramel, weightCaramel, syrupView),
+    new Chocolate(nameChocolate, weightChocolate, bitterness),
   ];
   this.weightGift = +weightSweetmeats + +weightCaramel + +weightChocolate;
 
   this.sortSweets = () => {
-    this.sweetsArray = this.sweetsArray.sort(this.compareWeight);
+    this.sweetsArray = this.sweetsArray.sort(compareWeight);
 
     return this.sweetsArray;
-  }
-
-  this.compareWeight = (obj1, obj2) => {
-    if (obj1.weight > obj2.weight) return 1;
-    if (obj1.weight === obj2.weight) return 0;
-    return -1;
   }
 
   this.findCandy = (name) => {
