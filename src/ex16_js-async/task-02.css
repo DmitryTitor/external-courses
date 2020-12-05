@@ -1,0 +1,23 @@
+.body {
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  border: 2px solid black;
+}
+
+.search {
+  margin: 5px 5px 15px 5px;
+  width: 300px;
+}
+
+.task {
+  width: 300px;
+  margin: 5px;
+}
