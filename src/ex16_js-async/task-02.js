@@ -2,6 +2,7 @@ const tasksString = localStorage.getItem("tasks");
 const tasks = JSON.parse(tasksString);
 const div = document.querySelector('.main');
 const input = document.querySelector('.search');
+const timeDelay = 1500;
 
 input.addEventListener('input', debounce(() => {
   const serchSymbols = input.value;
@@ -14,7 +15,7 @@ input.addEventListener('input', debounce(() => {
   });
 
   render(foundedTasks);
-}));
+}, timeDelay));
 
 render(tasks);
 
@@ -36,7 +37,7 @@ function deleteChilds() {
   }
 }
 
-function debounce(func) {
+function debounce(func, delay, args) {
   let isTime = false;
 
   return function() {
@@ -44,13 +45,13 @@ function debounce(func) {
       return undefined;
     }
 
-    func.call();
+    func.apply(this, args);
     isTime = true;
 
     setTimeout(() => {
       isTime = false;
-      func.call();
-    }, 1500);
+      func.apply(this, args);
+    }, delay);
 
   return undefined;  
   };
