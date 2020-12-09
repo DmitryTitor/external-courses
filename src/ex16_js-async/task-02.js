@@ -3,11 +3,11 @@ const tasks = JSON.parse(tasksString);
 const div = document.querySelector('.main');
 const input = document.querySelector('.search');
 const timeDelay = 1500;
+let timer;
 
-input.addEventListener('input', debounce(() => {
-  const serchSymbols = input.value;
-  const foundedTasks = tasks.filter((element) => {
-    if (element.name.indexOf(serchSymbols) === 0) {
+input.addEventListener('input', debounce((tasksArray) => {
+  const foundedTasks = tasksArray.filter((element) => {
+    if (element.name.indexOf(input.value) === 0) {
       return true;
     }
 
@@ -15,7 +15,7 @@ input.addEventListener('input', debounce(() => {
   });
 
   render(foundedTasks);
-}, timeDelay));
+}, timeDelay, [tasks]));
 
 render(tasks);
 
@@ -42,16 +42,16 @@ function debounce(func, delay, args) {
 
   return function() {
     if (isTime) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        isTime = false;
+        func.apply(this, args);
+      }, delay);
+
       return undefined;
     }
-
-    func.apply(this, args);
+    
     isTime = true;
-
-    setTimeout(() => {
-      isTime = false;
-      func.apply(this, args);
-    }, delay);
 
   return undefined;  
   };
