@@ -3,7 +3,6 @@ const tasks = JSON.parse(tasksString);
 const div = document.querySelector('.main');
 const input = document.querySelector('.search');
 const timeDelay = 1500;
-let timer;
 
 input.addEventListener('input', debounce((tasksArray) => {
   const foundedTasks = tasksArray.filter((element) => {
@@ -39,6 +38,7 @@ function deleteChilds() {
 
 function debounce(func, delay, args) {
   let isTime = false;
+  let timer;
 
   return function() {
     if (isTime) {
