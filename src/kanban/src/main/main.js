@@ -1,5 +1,6 @@
 import { parent, arrow, menu, itemTextArray, createDropDownHeaderMenu } from '../header/header.js';
 import { addButtons, disableEnableAddButtons, deleteDropDownMenus } from './addButtons.js';
+import { createMenuItem } from './createMenu.js';
 
 createDropDownHeaderMenu(parent, arrow, menu, itemTextArray);
 
@@ -23,7 +24,7 @@ const taskFooters = {
 
 const taskBlocksOrder = ['backlog', 'ready', 'inProgress', 'finished'];
 
-const renderTasks = () => {
+export const renderTasks = () => {
   localStorage.setItem('id-count', `${idCount}`);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   Object.keys(tasks).forEach(key => {
@@ -59,7 +60,7 @@ taskBlocksOrder.forEach(key => {
         menu.classList.add('main__drop_down');
 
         arr.forEach(element => {
-          menu.appendChild(createMenuItem(element.title, 'main_drop_down__item', 'div', element.id, key, taskView));
+          menu.appendChild(createMenuItem(element.title, 'main_drop_down__item', 'div', element.id, key, taskView, tasks, taskBlocksOrder, taskFooters));
         })
 
         taskFooters[key].appendChild(menu);
@@ -118,36 +119,6 @@ function createTaskTextareaToInput(key) {
 
     return undefined;
   })
-}
-
-function createMenuItem(text, className, containerClass, id, key, previousKey) {
-  const newElement = document.createElement(containerClass);
-
-  newElement.classList.add(className);
-  newElement.innerHTML = text;
-  newElement.id = id;
-  newElement.addEventListener('click', ({ target }) => {
-    let id2 = target.getAttribute('id');
-    let text2 = target.innerHTML;
-
-    tasks[key].push({ id: id2, title: text2 })
-    target.remove();
-
-    const spliceIndex = tasks[previousKey].findIndex(element => {
-      if (+element.id === +id2) {
-        return true;
-      }
-
-      return false;
-    });
-
-    tasks[previousKey].splice(spliceIndex, 1);
-
-    deleteDropDownMenus(taskBlocksOrder, taskFooters);
-    renderTasks();
-  })
-
-  return newElement;
 }
 
 renderTasks();
