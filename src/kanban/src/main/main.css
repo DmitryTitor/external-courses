@@ -1,0 +1,126 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  background-color: #0079BF;
+  height: 86vh;
+  overflow-x: auto;
+}
+
+.main__task_block {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  background-color: rgb(184, 184, 184);
+  border-radius: 10px;
+  margin: 20px auto;
+}
+
+.task_block__div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.task_block__task {
+  margin: 5px 0;
+  width: 90%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.task_block__task:focus {
+  outline: 0;
+}
+
+.task_block__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 10px;
+  font-size: 18px;
+}
+
+.task_block__menu {
+  fill: black;
+  padding: 10px 5px;
+}
+
+.task_block__menu:hover {
+  background-color: #0079BF;
+  border-radius: 100%;
+  cursor: pointer;
+  fill: white;
+}
+
+.main__drop_down {
+  position: absolute;
+  font-size: 24px;
+  background-color: white;
+  border: 2px solid black;
+}
+
+.buttons__drop_down_item {
+  max-width: 20vw;
+  height: 30px;
+  background-color: white;
+  border-bottom: 1px solid rgb(150, 25, 25);
+  text-align: center;
+  padding: 2% 0;
+}
+
+.task_block__add_task {
+  background: transparent;
+  outline: none;
+  border: 0;
+  width: max-content;
+  margin: 5px;
+  font-size: 18px;
+  color: #000000;
+}
+
+.task_block__add_task:disabled {
+  color: #5E6C84;
+}
+
+.task_block__plus {
+  fill: #5E6C84;
+}
+
+.task_block__add_task:hover:not(:disabled) {
+  background-color: darkgreen;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.task_block__add_task_selected {
+  background-color: darkgreen;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.task_block__add_task:hover:not(:disabled) > .task_block__plus{
+  fill: white;
+}
+
+.main_drop_down__item {
+  max-width: 20vw;
+  height: 30px;
+  border-bottom: 1px solid black;
+  text-align: center;
+  padding: 2% 0;
+  overflow: hidden;
+}
+
+.main_drop_down__item:hover, .buttons__drop_down_item:hover {
+  background-color: #0aa5ff;
+  cursor: pointer;
+  color: white;
+  overflow: hidden;
+}

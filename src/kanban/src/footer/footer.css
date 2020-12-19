@@ -1,0 +1,35 @@
+.footer {
+  padding: 0.5% 0%;
+  color: white;
+  position: absolute;
+  top: 100%;
+  transform: translateY(-100%);
+  width: 100%;
+  background-color: #0067A3;
+  display: flex;
+  justify-content: space-between;
+  height: 5vh;
+}
+
+.footer__left {
+  margin: 0.5% 0 0.5% 2%;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer__active-tasks, .footer__finished-tasks {
+  margin: 0 15px;
+}
+
+.footer__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 2%;
+}
+
+.footer__active-tasks, .footer__finished-tasks, .footer__cop {
+  font-size: 18px;
+}
