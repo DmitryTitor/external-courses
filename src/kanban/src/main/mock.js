@@ -35,8 +35,8 @@ const initialData = {
     }
   ],
   finished: []
-};
-
+}
+localStorage.clear();
 if (!localStorage.getItem(LS_NAME_TASKS)) {
   localStorage.setItem(LS_NAME_TASKS, JSON.stringify(initialData));
   localStorage.setItem('id-count', '5')
