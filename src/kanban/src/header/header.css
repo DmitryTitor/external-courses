@@ -23,9 +23,14 @@
   margin: 0 5px;
 }
 
-.header__menu:hover, .header__create-list:hover, .header__person:hover {
+.header__menu:hover, .header__person:hover {
   background-color: #5EA6D1;
   border-radius: 50%;
+  cursor: pointer;
+}
+
+.header__create-list-div:hover {
+  background-color: #5EA6D1; 
   cursor: pointer;
 }
 
@@ -100,6 +105,17 @@
 
 .header__create-list-words {
   font-size: 18px;
+}
+
+.input_list_area {
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  font-size: 18px;
+  background-color: white;
+  width: 180px;
+  height: 45px;
+  border: 2px solid black;
 }
 
 /* Стилизация скроллбара */

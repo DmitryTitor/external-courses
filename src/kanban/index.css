@@ -8,7 +8,11 @@
 }
 
 .body {
-  background-color: #0079BF
+  background-color: #0079BF;
+  /* display: block; */
+  /* display: flex;
+  flex-direction: column;
+  overflow-x: scroll; */
 }
 
 .drop_down__item {
